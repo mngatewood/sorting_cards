@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/round'
+require 'pry'
 
 class RoundTest < Minitest::Test
 
@@ -37,15 +38,15 @@ class RoundTest < Minitest::Test
   end
 
   def test_it_records_a_guess
-    skip
+    # skip
     # how to assert output of round.guesses
     card_1 = Card.new("3","Hearts")
     card_2 = Card.new("4", "Clubs")
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
-    # expected = [#<Guess:0xXXXXXX @response="3 of Hearts", @card=#<Card:0xXXXXXX @value="3", @suit="Hearts">>]
-    assert_equal round.guesses, expected
+    expected = "3 of Hearts"
+    assert_equal round.guesses.first.response, expected
   end
 
   def test_it_counts_guesses
@@ -127,6 +128,14 @@ class RoundTest < Minitest::Test
     assert_equal round.number_correct, 1
   end
 
-
+  def test_it_displays_percent_of_correct_guesses
+    card_1 = Card.new("3","Hearts")
+    card_2 = Card.new("4", "Clubs")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.record_guess({value: "3", suit: "Hearts"})
+    round.record_guess({value: "Jack", suit: "Diamonds"})
+    assert_equal 50, round.percent_correct
+  end
 
 end

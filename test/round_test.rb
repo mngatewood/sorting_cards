@@ -18,7 +18,7 @@ class RoundTest < Minitest::Test
     card_2 = Card.new("4", "Clubs")
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
-    assert_equal round.deck, deck
+    assert_equal deck, round.deck
   end
 
   def test_it_has_an_array_of_guesses
@@ -26,7 +26,7 @@ class RoundTest < Minitest::Test
     card_2 = Card.new("4", "Clubs")
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
-    assert_equal round.guesses, []
+    assert_equal [], round.guesses
   end
 
   def test_it_displays_the_current_card
@@ -34,19 +34,17 @@ class RoundTest < Minitest::Test
     card_2 = Card.new("4", "Clubs")
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
-    assert_equal round.current_card, card_1
+    assert_equal card_1, round.current_card
   end
 
   def test_it_records_a_guess
-    # skip
-    # how to assert output of round.guesses
     card_1 = Card.new("3","Hearts")
     card_2 = Card.new("4", "Clubs")
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
     expected = "3 of Hearts"
-    assert_equal round.guesses.first.response, expected
+    assert_equal expected, round.guesses.first.response
   end
 
   def test_it_counts_guesses
@@ -55,7 +53,7 @@ class RoundTest < Minitest::Test
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
-    assert_equal round.guesses.count, 1
+    assert_equal 1, round.guesses.count
   end
 
   def test_it_gives_feedback_on_correct_guess
@@ -64,7 +62,7 @@ class RoundTest < Minitest::Test
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
-    assert_equal round.guesses.first.feedback, "Correct!"
+    assert_equal "Correct!", round.guesses.first.feedback
   end
 
   def test_it_displays_number_of_correct_guesses
@@ -73,7 +71,7 @@ class RoundTest < Minitest::Test
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
-    assert_equal round.number_correct, 1
+    assert_equal 1, round.number_correct
   end
 
   def test_it_increments_the_current_card
@@ -82,20 +80,18 @@ class RoundTest < Minitest::Test
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
-    assert_equal round.current_card, card_2
+    assert_equal card_2, round.current_card
   end
 
   def test_it_records_another_guess
-    skip
-    # how to assert output of round.guesses
     card_1 = Card.new("3","Hearts")
     card_2 = Card.new("4", "Clubs")
     deck = Deck.new([card_1, card_2])
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
     round.record_guess({value: "Jack", suit: "Diamonds"})
-    # expected = [#<Guess:0xXXXXXX @response="Jack of Diamonds", @card=#<Card:0xXXXXXX @value="Jack", @suit="Diamonds">>]
-    assert_equal round.guesses, expected
+    expected = "Jack of Diamonds"
+    assert_equal expected, round.guesses.last.response
   end
 
   def test_it_counts_two_guesses
@@ -105,7 +101,7 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
     round.record_guess({value: "Jack", suit: "Diamonds"})
-    assert_equal round.guesses.count, 2
+    assert_equal 2, round.guesses.count
   end
 
   def test_it_gives_feedback_on_incorrect_guess
@@ -115,7 +111,7 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
     round.record_guess({value: "Jack", suit: "Diamonds"})
-    assert_equal round.guesses.last.feedback, "Incorrect."
+    assert_equal "Incorrect.", round.guesses.last.feedback
   end
 
   def test_it_displays_number_of_correct_guesses
@@ -125,7 +121,7 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
     round.record_guess({value: "3", suit: "Hearts"})
     round.record_guess({value: "Jack", suit: "Diamonds"})
-    assert_equal round.number_correct, 1
+    assert_equal 1, round.number_correct
   end
 
   def test_it_displays_percent_of_correct_guesses

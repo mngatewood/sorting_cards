@@ -1,17 +1,33 @@
 require './lib/deck'
+require './lib/guess'
+require 'pry'
 
 class Round
 
   attr_reader :deck,
-              :guesses
+              :guesses,
+              :number_correct
 
   def initialize(deck)
-    @deck     = deck
-    @guesses  = []
+    @deck           = deck
+    @guesses        = []
+    @number_correct = 0
   end
 
   def current_card
     @deck.cards.first
+  end
+
+  def record_guess(new_guess)
+    guess = Guess.new("#{new_guess[:value]} of #{new_guess[:suit]}", current_card)
+    @guesses << guess
+    if guess.correct?
+      @number_correct += 1
+    end
+  end
+
+  def count
+    @guesses.length
   end
 
 end

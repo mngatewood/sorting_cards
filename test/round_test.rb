@@ -28,4 +28,12 @@ class RoundTest < Minitest::Test
     assert_equal round.guesses, []
   end
 
+  def test_it_can_display_current_card
+    card_1 = Card.new("3","Hearts")
+    card_2 = Card.new("4", "Clubs")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    assert_equal round.current_card, card_1
+  end
+
 end

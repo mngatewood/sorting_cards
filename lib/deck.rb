@@ -54,14 +54,14 @@ class Deck
     @cards.each do | card |
       sorted_deck << card
       if sorted_deck.length > 1
-        j = sorted_deck.length - 1
-        while j > 0
-          right_value = convert_card_to_integer(sorted_deck[j])
-          left_value = convert_card_to_integer(sorted_deck[j-1])
+        i = sorted_deck.length - 1
+        while i > 0
+          right_value = convert_card_to_integer(sorted_deck[i])
+          left_value = convert_card_to_integer(sorted_deck[i-1])
           if right_value < left_value
-            sorted_deck[j-1], sorted_deck[j] = sorted_deck[j], sorted_deck[j-1]
+            sorted_deck[i-1], sorted_deck[i] = sorted_deck[i], sorted_deck[i-1]
           end
-          j -= 1
+          i -= 1
         end
       end
     end

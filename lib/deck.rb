@@ -77,4 +77,27 @@ class Deck
     end
   end
 
+  def merge_sort_conquer(left_array, right_array)
+    result = []
+    right_index = 0
+    left_index = 0
+
+    while right_index < right_array.length && left_index < left_array.length
+      if convert_card_to_integer(right_array[right_index]) < convert_card_to_integer(left_array[left_index])
+        result << right_array[right_index]
+        right_index += 1
+      else
+        result << left_array[left_index]
+        left_index += 1
+      end
+    end
+
+    left = left_array[left_index..-1]
+    right = right_array[right_index..-1]
+    result << left
+    result << right
+    return result.flatten
+  end
+
+
 end

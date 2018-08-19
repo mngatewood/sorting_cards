@@ -14,13 +14,14 @@ class Deck
   end
 
   def value_to_integer(card)
-    if card.value == "Jack"
+    case card.value
+    when "Jack"
       return 11
-    elsif card.value == "Queen"
+    when "Queen"
       return 12
-    elsif card.value == "King"
+    when "King"
       return 13
-    elsif card.value == "Ace"
+    when "Ace"
       return 14
     else
       return card.value.to_i
@@ -28,13 +29,14 @@ class Deck
   end
 
   def suit_to_integer(card)
-    if card.suit == "Clubs"
+    case card.suit
+    when "Clubs"
       return 0
-    elsif card.suit == "Diamonds"
+    when "Diamonds"
       return 0.1
-    elsif card.suit == "Hearts"
+    when "Hearts"
       return 0.2
-    elsif card.suit == "Spades"
+    when "Spades"
       return 0.3
     else
       return "error"

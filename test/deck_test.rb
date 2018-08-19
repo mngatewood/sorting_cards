@@ -20,7 +20,7 @@ class DeckTest < Minitest::Test
     assert_equal deck.cards, [card_1, card_2, card_3]
   end
 
-  def tests_it_counts_cards
+  def test_it_counts_cards
     card_1 = Card.new("3","Hearts")
     card_2 = Card.new("4", "Clubs")
     card_3 = Card.new("5", "Diamonds")
@@ -28,13 +28,59 @@ class DeckTest < Minitest::Test
     assert_equal deck.count, 3
   end
 
+  def test_it_converts_card_value_to_integer
+    card_1 = Card.new("4","Hearts")
+    card_2 = Card.new("Jack", "Clubs")
+    card_3 = Card.new("5", "Diamonds")
+    card_4 = Card.new("Ace", "Spades")
+    card_5 = Card.new("Ace", "Diamonds")
+    deck = Deck.new([card_1, card_2, card_3, card_4, card_5])
+
+    assert_equal 4, deck.value_to_integer(card_1)
+    assert_equal 11, deck.value_to_integer(card_2)
+    assert_equal 5, deck.value_to_integer(card_3)
+    assert_equal 14, deck.value_to_integer(card_4)
+    assert_equal 14, deck.value_to_integer(card_5)
+  end
+
+  def test_it_converts_card_suit_to_integer
+    card_1 = Card.new("4","Hearts")
+    card_2 = Card.new("Jack", "Clubs")
+    card_3 = Card.new("5", "Diamonds")
+    card_4 = Card.new("Ace", "Spades")
+    card_5 = Card.new("Ace", "Diamonds")
+    deck = Deck.new([card_1, card_2, card_3, card_4, card_5])
+
+    assert_equal 0.2, deck.suit_to_integer(card_1)
+    assert_equal 0, deck.suit_to_integer(card_2)
+    assert_equal 0.1, deck.suit_to_integer(card_3)
+    assert_equal 0.3, deck.suit_to_integer(card_4)
+    assert_equal 0.1, deck.suit_to_integer(card_5)
+  end
+
+  def test_it_converts_card_suit_and_value_to_integer
+    card_1 = Card.new("4","Hearts")
+    card_2 = Card.new("Jack", "Clubs")
+    card_3 = Card.new("5", "Diamonds")
+    card_4 = Card.new("Ace", "Spades")
+    card_5 = Card.new("Ace", "Diamonds")
+    deck = Deck.new([card_1, card_2, card_3, card_4, card_5])
+
+    assert_equal 4.2, deck.convert_card_to_integer(card_1)
+    assert_equal 11, deck.convert_card_to_integer(card_2)
+    assert_equal 5.1, deck.convert_card_to_integer(card_3)
+    assert_equal 14.3, deck.convert_card_to_integer(card_4)
+    assert_equal 14.1, deck.convert_card_to_integer(card_5)
+  end
+
   def test_it_sorts_cards
     card_1 = Card.new("4","Hearts")
-    card_2 = Card.new("6", "Clubs")
+    card_2 = Card.new("Jack", "Clubs")
     card_3 = Card.new("5", "Diamonds")
-    card_4 = Card.new("9", "Spades")
-    card_5 = Card.new("7", "Diamonds")
+    card_4 = Card.new("Ace", "Spades")
+    card_5 = Card.new("Ace", "Diamonds")
     deck = Deck.new([card_1, card_2, card_3, card_4, card_5])
     assert_equal [card_1, card_3, card_2, card_5, card_4], deck.sort
   end
+
 end

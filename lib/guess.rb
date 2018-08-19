@@ -11,14 +11,14 @@ class Guess
   end
 
   def correct?
-    @response == "#{card.value} of #{card.suit}"
+    return @response == "#{card.value} of #{card.suit}"
   end
 
   def feedback
     if correct?
-      "Correct!"
+      return "Correct!"
     else
-      "Incorrect."
+      return "Incorrect."
     end
   end
 

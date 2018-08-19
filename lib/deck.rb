@@ -6,21 +6,22 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
-    @cards  = cards
+    return @cards  = cards
   end
 
   def count
-    @cards.length
+    return @cards.length
   end
 
   def value_to_integer(card)
-    if card.value == "Jack"
+    case card.value
+    when "Jack"
       return 11
-    elsif card.value == "Queen"
+    when "Queen"
       return 12
-    elsif card.value == "King"
+    when "King"
       return 13
-    elsif card.value == "Ace"
+    when "Ace"
       return 14
     else
       return card.value.to_i
@@ -28,13 +29,14 @@ class Deck
   end
 
   def suit_to_integer(card)
-    if card.suit == "Clubs"
+    case card.suit
+    when "Clubs"
       return 0
-    elsif card.suit == "Diamonds"
+    when "Diamonds"
       return 0.1
-    elsif card.suit == "Hearts"
+    when "Hearts"
       return 0.2
-    elsif card.suit == "Spades"
+    when "Spades"
       return 0.3
     else
       return "error"
@@ -52,14 +54,14 @@ class Deck
     @cards.each do | card |
       sorted_deck << card
       if sorted_deck.length > 1
-        j = sorted_deck.length - 1
-        while j > 0
-          right_value = convert_card_to_integer(sorted_deck[j])
-          left_value = convert_card_to_integer(sorted_deck[j-1])
+        i = sorted_deck.length - 1
+        while i > 0
+          right_value = convert_card_to_integer(sorted_deck[i])
+          left_value = convert_card_to_integer(sorted_deck[i-1])
           if right_value < left_value
-            sorted_deck[j-1], sorted_deck[j] = sorted_deck[j], sorted_deck[j-1]
+            sorted_deck[i-1], sorted_deck[i] = sorted_deck[i], sorted_deck[i-1]
           end
-          j -= 1
+          i -= 1
         end
       end
     end
@@ -67,7 +69,7 @@ class Deck
   end
 
   def merge_sort
-    merge_divide(@cards)
+    return merge_divide(@cards)
   end
 
   def merge_divide(array)
@@ -75,8 +77,8 @@ class Deck
       return array
     else
       array_middle = array.length / 2
-      left_array = array[0..(array_middle - 1)]
-      right_array = array[(array_middle)..-1]
+      left_array = array[0...array_middle]
+      right_array = array[array_middle..-1]
       return merge_conquer(merge_divide(left_array), merge_divide(right_array))
     end
   end
@@ -100,9 +102,7 @@ class Deck
 
     left = left_array[left_index..-1]
     right = right_array[right_index..-1]
-    result << left
-    result << right
-    return result.flatten
+    return result + left + right
   end
 
 end

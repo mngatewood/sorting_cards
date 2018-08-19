@@ -16,7 +16,7 @@ class Round
   end
 
   def current_card
-    @deck.cards[@current_card_index]
+    return @deck.cards[@current_card_index]
   end
 
   def record_guess(new_guess)
@@ -29,11 +29,11 @@ class Round
   end
 
   def count
-    @guesses.length
+    return @guesses.length
   end
 
   def percent_correct
-    (@number_correct / count.to_f * 100).to_i
+    return (@number_correct / count.to_f * 100).to_i
   end
 
 end

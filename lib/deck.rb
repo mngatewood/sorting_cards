@@ -77,8 +77,8 @@ class Deck
       return array
     else
       array_middle = array.length / 2
-      left_array = array[0..(array_middle - 1)]
-      right_array = array[(array_middle)..-1]
+      left_array = array[0...array_middle]
+      right_array = array[array_middle..-1]
       return merge_conquer(merge_divide(left_array), merge_divide(right_array))
     end
   end
@@ -102,9 +102,7 @@ class Deck
 
     left = left_array[left_index..-1]
     right = right_array[right_index..-1]
-    result << left
-    result << right
-    return result.flatten
+    return result + left + right
   end
 
 end

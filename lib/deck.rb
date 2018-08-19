@@ -66,4 +66,15 @@ class Deck
     return sorted_deck
   end
 
+  def merge_sort_divide(array)
+    if array.length == 1
+      return array
+    else
+      array_middle = array.length / 2
+      left_array = array[0..(array_middle - 1)]
+      right_array = array[(array_middle)..-1]
+      return [merge_sort_divide(left_array).flatten, merge_sort_divide(right_array).flatten]
+    end
+  end
+
 end

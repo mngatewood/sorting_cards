@@ -91,7 +91,7 @@ class DeckTest < Minitest::Test
     card_5 = Card.new("Ace", "Diamonds")
     deck = Deck.new([card_1, card_2, card_3, card_4, card_5])
     expected = [card_1, card_3, card_2, card_5, card_4]
-    assert_equal expected, deck.merge_sort_divide(deck.cards)
+    assert_equal expected, deck.merge_divide(deck.cards)
   end
 
   def test_it_sorts_and_merges_two_arrays
@@ -104,7 +104,7 @@ class DeckTest < Minitest::Test
     left_array = [card_1, card_2]
     right_array = [card_3, card_4, card_5]
     expected = [card_1, card_3, card_2, card_4, card_5]
-    assert_equal expected, deck.merge_sort_conquer(left_array, right_array)
+    assert_equal expected, deck.merge_conquer(left_array, right_array)
   end
 
   def test_it_sorts_cards_using_merge_sort
@@ -117,6 +117,5 @@ class DeckTest < Minitest::Test
     expected = [card_1, card_3, card_2, card_5, card_4]
     assert_equal expected, deck.merge_sort
   end
-
 
 end

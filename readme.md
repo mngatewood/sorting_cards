@@ -11,7 +11,7 @@ Click [here](http://backend.turing.io/module1/projects/sorting_cards) to view th
 
 2. From a terminal, navigate to the project root directory (sorting_cards).
 
-3. Type "ruby *[class name]*_test.rb", where *[class name]* is the name of any of the classess included in this project (card, deck, guess, or round).
+3. Type "ruby *[class name]*_test.rb", where *[class name]* is the name of any of the classes included in this project (card, deck, guess, or round).
 
 ## Contributors
 

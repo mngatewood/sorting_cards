@@ -67,14 +67,7 @@ class Deck
   end
 
   def merge_sort
-    initial_split = merge_sort_divide(@cards)
-    merged_array = merge_sort_conquer(initial_split[0], initial_split[1])
-    x = 0
-    while x < 100
-      split_array = merge_sort_divide(merged_array)
-      merged_array = merge_sort_conquer(split_array[0], split_array[1])
-      x += 1
-    end
+    merge_sort_divide(@cards)
   end
 
   def merge_sort_divide(array)
@@ -84,7 +77,7 @@ class Deck
       array_middle = array.length / 2
       left_array = array[0..(array_middle - 1)]
       right_array = array[(array_middle)..-1]
-      return [merge_sort_divide(left_array).flatten, merge_sort_divide(right_array).flatten]
+      return merge_sort_conquer(merge_sort_divide(left_array).flatten, merge_sort_divide(right_array).flatten)
     end
   end
 

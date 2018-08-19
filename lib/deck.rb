@@ -6,11 +6,11 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
-    @cards  = cards
+    return @cards  = cards
   end
 
   def count
-    @cards.length
+    return @cards.length
   end
 
   def value_to_integer(card)
@@ -67,7 +67,7 @@ class Deck
   end
 
   def merge_sort
-    merge_divide(@cards)
+    return merge_divide(@cards)
   end
 
   def merge_divide(array)
